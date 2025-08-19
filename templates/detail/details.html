@@ -1,0 +1,105 @@
+{% extends 'assistant/base.html' %}
+{% load static %}
+{% block title %} TV Areia Branca - Detalhes {% endblock %}
+
+{% block content %}
+<main class="article-detail">
+    <div class="container">
+        <div class="article-header">
+            <span class="category-tag world">MUNDO</span>
+            <h1>Conflito Global: Tensões Atingem Nível Crítico Enquanto Líderes Buscam Solução</h1>
+            <div class="article-meta">
+                <span class="author">Por <strong>Carlos Oliveira</strong></span>
+                <span class="date"><i class="far fa-clock"></i> Publicado em 15/06/2023 às 14:30</span>
+                <span class="views"><i class="far fa-eye"></i> 24.5K visualizações</span>
+            </div>
+            <div class="social-share">
+                <span>Compartilhar:</span>
+                <a href="#" class="facebook" title="Compartilhar no Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="twitter" title="Compartilhar no Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="whatsapp" title="Compartilhar no WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" class="linkedin" title="Compartilhar no LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="telegram" title="Compartilhar no Telegram"><i class="fab fa-telegram-plane"></i></a>
+            </div>
+        </div>
+
+        <div class="article-content">
+            <div class="featured-image">
+                <img src="img/conflito-global.jfif" alt="Conflito Global">
+                <p class="image-caption">Líderes mundiais durante reunião de emergência em Genebra (Foto:
+                    ONU/Divulgação)</p>
+            </div>
+
+            <div class="article-body">
+                <p class="lead">Diplomatas de 40 países se reuniram hoje em Genebra para negociar um acordo de paz
+                    enquanto civis enfrentam condições cada vez mais difíceis nas zonas de conflito. O encontro acontece
+                    após semanas de escalada nas tensões que ameaçam desestabilizar toda a região.</p>
+
+                <p>O secretário-geral da ONU, António Guterres, abriu a sessão com um apelo emocionado: "Estamos à beira
+                    do abismo. A violência deve cessar imediatamente para que possamos trabalhar por uma solução
+                    pacífica e duradoura."</p>
+
+                <h2>Contexto Histórico</h2>
+                <p>As tensões na região remontam a décadas, mas atingiram um novo patamar no último mês após uma série
+                    de ataques e contra-ataques entre as forças governamentais e grupos rebeldes. Segundo relatórios da
+                    ONU, mais de 10.000 civis já foram deslocados e a infraestrutura crítica, incluindo hospitais e
+                    escolas, foi severamente danificada.</p>
+
+                <blockquote>
+                    "Esta é a crise humanitária mais grave que vimos nesta região em 20 anos. As crianças são as maiores
+                    vítimas", afirmou a diretora regional da UNICEF.
+                </blockquote>
+
+                <h2>Posicionamento das Potências</h2>
+                <p>Os Estados Unidos e a União Europeia pressionam por sanções econômicas mais duras, enquanto a Rússia
+                    e a China defendem uma abordagem diplomática sem "interferências externas". Analistas apontam que
+                    este impasse reflete as crescentes tensões geopolíticas globais.</p>
+
+                <div class="article-image">
+                    <img src="img/conflito-global.jfif" alt="Reunião de diplomatas">
+                    <p class="image-caption">Diplomatas durante as negociações em Genebra (Foto: Reuters)</p>
+                </div>
+
+                <h2>Impacto Humanitário</h2>
+                <p>Organizações humanitárias alertam para a escassez de alimentos, medicamentos e água potável nas áreas
+                    mais afetadas. Um representante da Cruz Vermelha relatou:</p>
+
+                <ul>
+                    <li>Mais de 500.000 pessoas necessitam de assistência imediata</li>
+                    <li>80% dos hospitais na região de conflito estão inoperantes</li>
+                    <li>A taxa de desnutrição infantil dobrou nas últimas semanas</li>
+                </ul>
+
+                <h2>Próximos Passos</h2>
+                <p>As negociações devem continuar por pelo menos mais três dias. Enquanto isso, o Conselho de Segurança
+                    da ONU se reunirá amanhã para discutir uma possível resolução que autorize o envio de forças de paz.
+                </p>
+            </div>
+
+            <div class="article-footer">
+                <div class="author-box">
+                    <div class="author-image">
+                        <img src="img/calor oliveira.jfif" alt="Carlos Oliveira">
+                    </div>
+                    <div class="author-info">
+                        <h3>Carlos Oliveira</h3>
+                        <p>Correspondente internacional com 15 anos de experiência, cobrindo conflitos e diplomacia em
+                            mais de 30 países. Premiado com o Jabuti de Jornalismo em 2020.</p>
+                    </div>
+                </div>
+
+                <div class="social-share bottom">
+                    <span>Compartilhe esta matéria:</span>
+                    <a href="#" class="facebook" title="Compartilhar no Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="twitter" title="Compartilhar no Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="whatsapp" title="Compartilhar no WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="linkedin" title="Compartilhar no LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="telegram" title="Compartilhar no Telegram"><i
+                            class="fab fa-telegram-plane"></i></a>
+                </div>
+            </div>
+        </div>
+        {% include 'related_news/related_news.html' %}
+    </div>
+</main>
+{% endblock content %}

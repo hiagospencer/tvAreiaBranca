@@ -1,0 +1,64 @@
+{% extends 'assistant/base.html' %}
+{% load static %}
+{% block title %} TV Areia Branca - Categoria {% endblock %}
+
+{% block content %}
+<main class="category-page">
+    <div class="container">
+        <div class="category-header">
+            <h1 class="category-title">Política</h1>
+            <p class="category-description">As últimas notícias sobre política nacional e internacional, eleições,
+                governo e muito mais.</p>
+            <div class="category-breadcrumb">
+                <a href="index.html">Home</a> > <span>Política</span>
+            </div>
+        </div>
+
+        <div class="content-layout">
+            <section class="category-news">
+                <div class="news-list">
+                    <!-- Notícias da categoria -->
+                    <article class="news-item">
+                        <div class="news-image">
+                            <img src="img/politica.jfif" alt="Política">
+                            <span class="category-tag politics">POLÍTICA</span>
+                        </div>
+                        <div class="news-details">
+                            <h3><a href="materia.html" style="color: #41449b;">Escândalo Abala Governo: Novas
+                                    Gravações Revelam Conversas Explosivas</a></h3>
+                            <p>Documentos vazados mostram diálogos entre ministros que podem levar a pedidos de
+                                impeachment. Presidente se pronuncia e nega irregularidades.</p>
+                            <div class="news-meta">
+                                <span><i class="far fa-clock"></i> 3 horas atrás</span>
+                                <span><i class="far fa-comment"></i> 124 comentários</span>
+                            </div>
+                        </div>
+                    </article>
+                    <!-- Mais notícias... -->
+                </div>
+
+                {% include 'assistant/pagination.html' %}
+            </section>
+
+            <aside class="sidebar">
+                <div class="sidebar-widget">
+                    <h3>Subcategorias</h3>
+                    <ul class="subcategories">
+                        <li><a href="#">Eleições <span>42</span></a></li>
+                        <li><a href="#">Governo Federal <span>35</span></a></li>
+                        <li><a href="#">Congresso <span>28</span></a></li>
+                        <li><a href="#">Partidos <span>19</span></a></li>
+                        <li><a href="#">Política Internacional <span>31</span></a></li>
+                        <li><a href="#">Justiça <span>23</span></a></li>
+                    </ul>
+                </div>
+
+                {% include 'youtube/youtube.html' %}
+            </aside>
+            <div class="anuncio" style="width: 100%;">
+                <img src="{% static 'img/Adolescencia-2.png' %}" alt="" height="90">
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}

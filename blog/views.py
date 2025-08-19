@@ -1,0 +1,10 @@
+from django.shortcuts import render
+
+def homepage(request):
+    return render(request, 'index.html')
+
+def detail(request):
+    return render(request, 'detail/details.html')
+
+def category(request):
+    return render(request, 'category/category.html')

@@ -1,0 +1,36 @@
+{% extends 'assistant/base.html' %}
+{% load static %}
+{% block title %} TV Areia Branca {% endblock %}
+
+{% block content %}
+<div class="mobile-menu-overlay"></div>
+
+<div class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <span class="category-tag world">MUNDO</span>
+            <h2>Conflito Global: Tensões Atingem Nível Crítico Enquanto Líderes Buscam Solução</h2>
+            <p>Diplomatas de 40 países se reúnem em Genebra para negociar acordo de paz enquanto civis enfrentam
+                condições cada vez mais difíceis nas zonas de conflito.</p>
+            <a href="{% url 'homepage' %}" class="read-more">Ler Matéria Completa <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+</div>
+
+<main class="main-content">
+    <div class="container">
+        <div class="anuncio">
+            <img src="img/Adolescencia-2.png" alt="" height="90">
+        </div>
+        {% include 'posts/highlight/highlight_day.html' %}
+        <div class="content-layout">
+            {% include 'posts/latest_news/latest_news_post.html' %}
+            <aside class="sidebar">
+                {% include 'posts/aside/most_read.html' %}
+                {% include 'youtube/youtube.html' %}
+            </aside>
+        </div>
+    </div>
+    {% include 'sponsors/sponsors.html' %}
+</main>
+{% endblock content %}
