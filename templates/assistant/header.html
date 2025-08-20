@@ -26,14 +26,12 @@
             </div>
             <nav class="main-nav">
                 <ul class="desktop-menu">
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="categoria.html">Areia Branca</a></li>
-                    <li><a href="categoria.html">Estado</a></li>
-                    <li><a href="categoria.html">Brasil</a></li>
-                    <li><a href="categoria.html">Internacional</a></li>
-                    <li><a href="categoria.html">Esportes</a></li>
-                    <li><a href="categoria.html">Cultura</a></li>
-                    <li><a href="categoria.html">Entretenimento</a></li>
+                    <li><a href="{% url 'homepage' %}" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
+                    {% for cat in categorias %}
+                    <li><a href="{% url 'category' slug=cat.slug %}"
+                        class="{% if request.resolver_match.kwargs.slug == cat.slug %}active{% endif %}">{{ cat.nome }}</a>
+                    </li>
+                    {% endfor %}
                 </ul>
                 <div class="mobile-menu-btn">
                     <i class="fas fa-bars" style="color: #fff;"></i>
@@ -55,14 +53,12 @@
     </div>
     <nav class="mobile-nav">
         <ul>
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="categoria.html">Areia Branca</a></li>
-            <li><a href="categoria.html">Estado</a></li>
-            <li><a href="categoria.html">Brasil</a></li>
-            <li><a href="categoria.html">Internacional</a></li>
-            <li><a href="categoria.html">Esportes</a></li>
-            <li><a href="categoria.html">Cultura</a></li>
-            <li><a href="categoria.html">Entretenimento</a></li>
+            <li><a href="{% url 'homepage' %}" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
+            {% for cat in categorias %}
+            <li><a href="{% url 'category' slug=cat.slug %}"
+                class="{% if request.resolver_match.kwargs.slug == cat.slug %}active{% endif %}">{{ cat.nome }}</a>
+            </li>
+            {% endfor %}
         </ul>
     </nav>
     <div class="mobile-menu-footer">

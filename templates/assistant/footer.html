@@ -21,14 +21,10 @@
             <div class="footer-section">
                 <h3>Categorias</h3>
                 <ul>
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="categoria.html">Areia Branca</a></li>
-                    <li><a href="categoria.html">Estado</a></li>
-                    <li><a href="categoria.html">Brasil</a></li>
-                    <li><a href="categoria.html">Internacional</a></li>
-                    <li><a href="categoria.html">Esportes</a></li>
-                    <li><a href="categoria.html">Cultura</a></li>
-                    <li><a href="categoria.html">Entretenimento</a></li>
+                    <li><a href="{% url 'homepage' %}" class="active">Home</a></li>
+                    {% for cat in categorias %}
+                    <li><a href="{% url 'category' slug=cat.slug %}">{{ cat.nome }}</a></li>
+                    {% endfor %}
                 </ul>
             </div>
             <div class="footer-section">

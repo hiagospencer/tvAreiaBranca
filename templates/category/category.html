@@ -1,16 +1,16 @@
 {% extends 'assistant/base.html' %}
 {% load static %}
-{% block title %} TV Areia Branca - Categoria {% endblock %}
+{% block title %} TV Areia Branca - Categoria {{ categoria.nome }} {% endblock %}
 
 {% block content %}
 <main class="category-page">
     <div class="container">
         <div class="category-header">
-            <h1 class="category-title">Política</h1>
+            <h1 class="category-title">{{ categoria.nome }}</h1>
             <p class="category-description">As últimas notícias sobre política nacional e internacional, eleições,
                 governo e muito mais.</p>
             <div class="category-breadcrumb">
-                <a href="index.html">Home</a> > <span>Política</span>
+                <a href="index.html">Home</a> > <span>{{ categoria.nome }}</span>
             </div>
         </div>
 
@@ -44,12 +44,13 @@
                 <div class="sidebar-widget">
                     <h3>Subcategorias</h3>
                     <ul class="subcategories">
-                        <li><a href="#">Eleições <span>42</span></a></li>
-                        <li><a href="#">Governo Federal <span>35</span></a></li>
-                        <li><a href="#">Congresso <span>28</span></a></li>
-                        <li><a href="#">Partidos <span>19</span></a></li>
-                        <li><a href="#">Política Internacional <span>31</span></a></li>
-                        <li><a href="#">Justiça <span>23</span></a></li>
+                        {% if subcategorias|length == 0 %}
+                        <li><a href="#">Nenhuma subcategoria disponível</a></li>
+                        {% else %}
+                            {% for sub in subcategorias %}
+                            <li><a href="#">{{ sub.nome }} <span>{{ sub.count}}</span></a></li>
+                            {% endfor %}
+                        {% endif %}
                     </ul>
                 </div>
 
