@@ -2,42 +2,17 @@
 <div class="sidebar-widget">
     <h3>Mais Lidas</h3>
     <div class="popular-news">
-        <a href="detalhe.html" class="read-more" style="color: #41449b;">
+        {% for post in mais_lidas %}
+        <a href="{% url 'detail' post_id=post.id %}" class="read-more" style="color: #41449b;">
             <article>
-                <span class="count">1</span>
+                <span class="count">{{ forloop.counter }}</span>
                 <div class="content">
-                    <h4>Vazamento Revela Segredos de Empresa de Tecnologia</h4>
-                    <span>12.4K visualizações</span>
+                    <h4>{{ post.titulo }}</h4>
+                    <span>{{ post.visualizacoes }} visualizações</span>
                 </div>
             </article>
         </a>
-        <article>
-            <span class="count">2</span>
-            <div class="content">
-                <h4>Médico Descobre Tratamento Revolucionário para Doença Rara</h4>
-                <span>9.7K visualizações</span>
-            </div>
-        </article>
-        <article>
-            <span class="count">3</span>
-            <div class="content">
-                <h4>Inflação Surpreende e Atinge Maior Nível em 10 Anos</h4>
-                <span>8.2K visualizações</span>
-            </div>
-        </article>
-        <article>
-            <span class="count">4</span>
-            <div class="content">
-                <h4>Novas Regras para Redes Sociais Geram Polêmica</h4>
-                <span>7.5K visualizações</span>
-            </div>
-        </article>
-        <article>
-            <span class="count">5</span>
-            <div class="content">
-                <h4>Fenômeno Natural Raro Pode Ser Visto Hoje à Noite</h4>
-                <span>6.9K visualizações</span>
-            </div>
-        </article>
+        <hr>
+        {% endfor %}
     </div>
 </div>

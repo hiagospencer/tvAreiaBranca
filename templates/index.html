@@ -5,14 +5,15 @@
 {% block content %}
 <div class="mobile-menu-overlay"></div>
 
-<div class="hero">
+<div class="hero" class="hero"
+     style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+            url('{{ banner.imagem.url }}') no-repeat center top / cover;">
     <div class="container">
         <div class="hero-content">
-            <span class="category-tag world">MUNDO</span>
-            <h2>Conflito Global: Tensões Atingem Nível Crítico Enquanto Líderes Buscam Solução</h2>
-            <p>Diplomatas de 40 países se reúnem em Genebra para negociar acordo de paz enquanto civis enfrentam
-                condições cada vez mais difíceis nas zonas de conflito.</p>
-            <a href="{% url 'homepage' %}" class="read-more">Ler Matéria Completa <i class="fas fa-arrow-right"></i></a>
+            <span class="category-tag world">{{ banner.categoria.nome }}</span>
+            <h2>{{ banner.titulo }}</h2>
+            <p>{{ banner.subtitulo }}</p>
+            <a href="{% url 'detail' post_id=banner.id %}" class="read-more">Ler Matéria Completa <i class="fas fa-arrow-right"></i></a>
         </div>
     </div>
 </div>

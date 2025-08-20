@@ -182,9 +182,8 @@ img {
 
 /* Hero Section */
 .hero {
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url("../img/conflito-global.jfif") no-repeat center center/cover;
-  height: 500px;
+  height: 100vh;
+  min-height: 500px;
   color: white;
   display: flex;
   align-items: center;
@@ -811,7 +810,7 @@ img {
   }
 
   .header-main .container {
-    flex-direction: column;
+    flex-direction: row;
   }
 
   .logo {

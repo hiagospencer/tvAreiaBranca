@@ -48,6 +48,8 @@ class Post(models.Model):
     subcategoria = models.ForeignKey(SubCategoria, on_delete=models.SET_NULL, null=True, blank=True)
     data_publicacao = models.DateTimeField(auto_now_add=True)
     destaque = models.BooleanField(default=False)
+    banner = models.BooleanField(default=False)
+    ultimas_noticias = models.BooleanField(default=False)
     visualizacoes = models.PositiveIntegerField(default=0)
 
     class Meta:
@@ -60,6 +62,35 @@ class Post(models.Model):
 class BreakingNews(models.Model):
     titulo = models.CharField(max_length=200)
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='breaking_news')
+    data_publicacao = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    class Meta:
+        ordering = ['-data_publicacao']
 
     def __str__(self):
         return f"Breaking: {self.titulo}"
+
+
+class YoutubeVideo(models.Model):
+    link_video = models.CharField(max_length=200)
+    id_video = models.CharField(max_length=20)
+    data_publicacao = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+
+    class Meta:
+        ordering = ['-data_publicacao']
+
+    def __str__(self):
+        return f'Video: {self.id_video}'
+
+
+class Patrocinadore(models.Model):
+    nome = models.CharField(max_length=100)
+    imagem = models.ImageField(upload_to='patrocinadores/')
+    site = models.CharField(max_length=100, blank=True)
+    rede_social = models.CharField(max_length=100, blank=True)
+    ativo = models.BooleanField(default=True)
+    data_publicacao = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        ordering = ['-data_publicacao']
+
+    def __str__(self):
+        return f'Patrocinador: {self.nome} - Ativo: {self.ativo}'

@@ -7,9 +7,10 @@
                 <span>ÚLTIMA HORA:</span>
                 <div class="news-ticker">
                     <ul>
-                        <li><a href="#">Crise política no Oriente Médio atinge novo patamar</a></li>
-                        <li><a href="#">Mercado financeiro reage a novas medidas econômicas</a></li>
-                        <li><a href="#">Descoberta científica promete revolucionar tratamento de câncer</a></li>
+
+                        {% for post in breaking_news %}
+                            <li><a href="{% url 'detail' post_id=post.post.id %}">{{ post.titulo }}</a></li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>

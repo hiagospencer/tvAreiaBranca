@@ -5,10 +5,14 @@
     <div class="sponsors-carousel-container">
         <div class="sponsors-track">
             <!-- Primeira cópia dos logos -->
+
+            {% for patrocinador in patrocinadores %}
             <div class="sponsor-item">
-                <img src="img/logo.png" alt="Patrocinador 1" loading="lazy">
+                <img src="{{ patrocinador.imagem.url }}" alt="{{ patrocinador.nome }}" loading="lazy">
             </div>
-            <div class="sponsor-item">
+            {% endfor %}
+
+            <!-- <div class="sponsor-item">
                 <img src="img/bolaovirtual-logo.jpeg" alt="Patrocinador 2" loading="lazy">
             </div>
             <div class="sponsor-item">
@@ -16,7 +20,7 @@
             </div>
             <div class="sponsor-item">
                 <img src="img/bolaovirtual-logo.jpeg" alt="Patrocinador 4" loading="lazy">
-            </div>
+            </div> -->
 
             <!-- Segunda cópia (para criar o efeito infinito) -->
             <div class="sponsor-item">

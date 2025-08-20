@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Autor, Categoria, SubCategoria, Post, BreakingNews
+from .models import Autor, Categoria, Patrocinadore, SubCategoria, Post, BreakingNews,YoutubeVideo
 
 
 @admin.register(Autor)
@@ -42,14 +42,27 @@ class PostAdmin(admin.ModelAdmin):
             'fields': ('autor', 'categoria', 'subcategoria')
         }),
         ("Publicação", {
-            'fields': ('data_publicacao', 'destaque')
+            'fields': ('data_publicacao', 'destaque', 'banner', 'ultimas_noticias')
         }),
     )
 
 
 @admin.register(BreakingNews)
 class BreakingNewsAdmin(admin.ModelAdmin):
-    list_display = ('titulo', 'post')
-    search_fields = ('titulo', 'post__titulo')
+    list_display = ('titulo', 'post', 'data_publicacao')
+    search_fields = ('titulo', 'post__titulo', 'data_publicacao')
     autocomplete_fields = ['post']
+    list_per_page = 20
+
+@admin.register(YoutubeVideo)
+class YoutubeVideoAdmin(admin.ModelAdmin):
+    list_display = ('link_video', 'id_video')
+    search_fields = ('link_video', 'id_video')
+    list_per_page = 20
+
+
+@admin.register(Patrocinadore)
+class PatrocinadoreAdmin(admin.ModelAdmin):
+    list_display = ('nome', 'ativo', 'data_publicacao')
+    search_fields = ('nome', 'ativo')
     list_per_page = 20
