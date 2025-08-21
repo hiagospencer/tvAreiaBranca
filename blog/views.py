@@ -35,7 +35,7 @@ def homepage(request):
 
 def detail(request, post_id):
     post = get_object_or_404(Post, id=post_id)
-    noticias_relacionadas = Post.objects.filter(categoria=post.categoria).exclude(id=post.id)[:5]
+    noticias_relacionadas = Post.objects.filter(categoria=post.categoria).order_by('-data_publicacao').exclude(id=post.id)[:5]
     post.visualizacoes += 1
     post.save(update_fields=['visualizacoes'])
     context = {
@@ -46,12 +46,24 @@ def detail(request, post_id):
 
 def category(request, slug):
     categoria = get_object_or_404(Categoria, slug=slug)
-    posts = Post.objects.filter(categoria=categoria)
+    posts = Post.objects.filter(categoria=categoria).order_by('-data_publicacao')
     subcategorias = SubCategoria.objects.filter(categoria=categoria)
+
+    paginator = Paginator(posts, 1)  # 10 itens por página
+    page = request.GET.get('page')
+
+    try:
+        posts_paginadas = paginator.page(page)
+    except PageNotAnInteger:
+        # Se página não for inteiro, mostrar primeira página
+        posts_paginadas = paginator.page(1)
+    except EmptyPage:
+        # Se página estiver fora do range, mostrar última página
+        posts_paginadas = paginator.page(paginator.num_pages)
 
     context = {
         'categoria': categoria,
-        'posts': posts,
+        'noticias': posts_paginadas,
         'subcategorias': subcategorias,
     }
     return render(request, 'category/category.html', context)

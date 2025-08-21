@@ -19,7 +19,7 @@
                 <div class="news-list">
                     <!-- Notícias da categoria -->
 
-                    {% for post in posts %}
+                    {% for post in noticias %}
                     <article class="news-item">
                         <div class="news-image">
                             <img src="{{ post.imagem.url }}" alt="{{ post.titulo }}">
@@ -35,7 +35,6 @@
                     </article>
                     {% endfor %}
                 </div>
-
                 {% include 'assistant/pagination.html' %}
             </section>
 
