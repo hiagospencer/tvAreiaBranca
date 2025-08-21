@@ -21,9 +21,10 @@
 <main class="main-content">
     <div class="container">
         <div class="anuncio">
-            <img src="img/Adolescencia-2.png" alt="" height="90">
+            <img src="{% static 'img/lista-de-transmissão_2.gif' %}" alt="" height="90">
         </div>
         {% include 'posts/highlight/highlight_day.html' %}
+        <img src="{% static 'img/lista-de-transmissão_2.gif' %}" alt="" height="90">
         <div class="content-layout">
             {% include 'posts/latest_news/latest_news_post.html' %}
             <aside class="sidebar">

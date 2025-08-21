@@ -4,7 +4,7 @@
     <h2 class="section-title">Últimas <span>Notícias</span></h2>
     <div class="news-list">
 
-        {% for post in ultimas_noticias %}
+        {% for post in noticias %}
         <a href="{% url 'detail' post_id=post.id %}" class="read-more" style="color: #41449b;">
             <article class="news-item">
                 <div class="news-image">
@@ -22,5 +22,5 @@
         </a>
         {% endfor %}
     </div>
-    <button class="load-more">Carregar Mais Notícias</button>
+    {% include 'assistant/pagination.html' %}
 </section>

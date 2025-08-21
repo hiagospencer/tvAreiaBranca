@@ -1,9 +1,35 @@
 <div class="pagination">
-    <a href="#" class="prev"><i class="fas fa-chevron-left"></i> Anterior</a>
-    <a href="#" class="page active">1</a>
-    <a href="#" class="page">2</a>
-    <a href="#" class="page">3</a>
-    <span class="dots">...</span>
-    <a href="#" class="page">10</a>
-    <a href="#" class="next">Próxima <i class="fas fa-chevron-right"></i></a>
+    {% if noticias.has_previous %}
+    <a href="?page={{ noticias.previous_page_number }}" class="prev">
+        <i class="fas fa-chevron-left"></i> Anterior
+    </a>
+    {% endif %}
+
+    {% if noticias.number > 3 %}
+    <a href="?page=1" class="page">1</a>
+        {% if noticias.number > 4 %}
+        <span class="dots">...</span>
+        {% endif %}
+    {% endif %}
+
+    {% for num in noticias.paginator.page_range %}
+        {% if num >= noticias.number|add:'-2' and num <= noticias.number|add:'2' %}
+            {% if noticias.number == num %}
+            <a href="?page={{ num }}" class="page active">{{ num }}</a>
+            {% else %}
+            <a href="?page={{ num }}" class="page">{{ num }}</a>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+
+        {% if noticias.number < noticias.paginator.num_pages|add:'-2' %}
+            {% if noticias.number < noticias.paginator.num_pages|add:'-3' %} <span class="dots">...</span> {% endif %}
+            <a href="?page={{ noticias.paginator.num_pages }}" class="page">{{ noticias.paginator.num_pages }}</a>
+        {% endif %}
+
+            {% if noticias.has_next %}
+            <a href="?page={{ noticias.next_page_number }}" class="next">
+                Próxima <i class="fas fa-chevron-right"></i>
+            </a>
+            {% endif %}
 </div>

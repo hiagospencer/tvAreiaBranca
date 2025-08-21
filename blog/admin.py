@@ -42,7 +42,7 @@ class PostAdmin(admin.ModelAdmin):
             'fields': ('autor', 'categoria', 'subcategoria')
         }),
         ("Publicação", {
-            'fields': ('data_publicacao', 'destaque', 'banner', 'ultimas_noticias')
+            'fields': ('data_publicacao', 'destaque', 'banner', 'ultimas_noticias', 'visualizacoes',)
         }),
     )
 

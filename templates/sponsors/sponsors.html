@@ -3,7 +3,7 @@
 <div class="sponsors-section">
     <h2 class="sponsors-title">Nossos Parceiros</h2>
     <div class="sponsors-carousel-container">
-        <div class="sponsors-track">
+        <div class="sponsors-track" id="sponsorsTrack">
             <!-- Primeira cópia dos logos -->
 
             {% for patrocinador in patrocinadores %}
@@ -11,30 +11,48 @@
                 <img src="{{ patrocinador.imagem.url }}" alt="{{ patrocinador.nome }}" loading="lazy">
             </div>
             {% endfor %}
-
-            <!-- <div class="sponsor-item">
-                <img src="img/bolaovirtual-logo.jpeg" alt="Patrocinador 2" loading="lazy">
-            </div>
-            <div class="sponsor-item">
-                <img src="img/logo.png" alt="Patrocinador 3" loading="lazy">
-            </div>
-            <div class="sponsor-item">
-                <img src="img/bolaovirtual-logo.jpeg" alt="Patrocinador 4" loading="lazy">
-            </div> -->
-
-            <!-- Segunda cópia (para criar o efeito infinito) -->
-            <div class="sponsor-item">
-                <img src="img/logo.png" alt="Patrocinador 1" loading="lazy">
-            </div>
-            <div class="sponsor-item">
-                <img src="img/bolaovirtual-logo.jpeg" alt="Patrocinador 2" loading="lazy">
-            </div>
-            <div class="sponsor-item">
-                <img src="img/logo.png" alt="Patrocinador 3" loading="lazy">
-            </div>
-            <div class="sponsor-item">
-                <img src="img/bolaovirtual-logo.jpeg" alt="Patrocinador 4" loading="lazy">
-            </div>
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const track = document.getElementById('sponsorsTrack');
+        const sponsors = track.querySelectorAll('.sponsor-item');
+
+        // Duplica os itens para criar o efeito infinito
+        sponsors.forEach(sponsor => {
+            const clone = sponsor.cloneNode(true);
+            track.appendChild(clone);
+        });
+
+        // Configura a animação com JavaScript
+        let animation;
+
+        function startAnimation() {
+            const itemWidth = sponsors[ 0 ].offsetWidth + 40; // width + gap
+            const totalWidth = itemWidth * sponsors.length;
+
+            track.style.width = totalWidth * 2 + 'px';
+
+            animation = track.animate([
+                { transform: 'translateX(0)' },
+                { transform: `translateX(-${totalWidth}px)` }
+            ], {
+                duration: 30000,
+                iterations: Infinity
+            });
+        }
+
+        startAnimation();
+
+        // Pausa a animação no hover
+        track.addEventListener('mouseenter', () => {
+            animation.pause();
+        });
+
+        track.addEventListener('mouseleave', () => {
+            animation.play();
+        });
+    });
+</script>
