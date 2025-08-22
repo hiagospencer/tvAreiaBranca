@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import get_object_or_404
+from django.db.models import Count
+
 from .models import Post, Categoria, SubCategoria, YoutubeVideo
 
 def homepage(request):
@@ -44,10 +46,21 @@ def detail(request, post_id):
     }
     return render(request, 'detail/details.html', context)
 
-def category(request, slug):
+def category(request, slug, subcategoria_slug=None):
     categoria = get_object_or_404(Categoria, slug=slug)
     posts = Post.objects.filter(categoria=categoria).order_by('-data_publicacao')
-    subcategorias = SubCategoria.objects.filter(categoria=categoria)
+    subcategorias = SubCategoria.objects.filter(categoria=categoria).annotate(
+        post_count=Count('post')
+    )
+
+    # Filtrar posts - por categoria OU por subcategoria se especificada
+    if subcategoria_slug:
+        subcategoria = get_object_or_404(SubCategoria, slug=subcategoria_slug, categoria=categoria)
+        posts = Post.objects.filter(subcategoria=subcategoria).order_by('-data_publicacao')
+        subcategoria_ativa = subcategoria
+    else:
+        posts = Post.objects.filter(categoria=categoria).order_by('-data_publicacao')
+        subcategoria_ativa = None
 
     paginator = Paginator(posts, 1)  # 10 itens por página
     page = request.GET.get('page')
@@ -65,5 +78,6 @@ def category(request, slug):
         'categoria': categoria,
         'noticias': posts_paginadas,
         'subcategorias': subcategorias,
+        'subcategoria_ativa': subcategoria_ativa,
     }
     return render(request, 'category/category.html', context)

@@ -18,8 +18,8 @@ class CategoriaAdmin(admin.ModelAdmin):
 
 @admin.register(SubCategoria)
 class SubCategoriaAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'categoria')
-    list_filter = ('categoria',)
+    list_display = ('nome', 'categoria', 'slug')
+    list_filter = ('categoria','slug')
     search_fields = ('nome',)
     list_per_page = 20
 

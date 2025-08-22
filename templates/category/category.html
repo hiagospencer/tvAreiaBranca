@@ -1,16 +1,23 @@
 {% extends 'assistant/base.html' %}
 {% load static %}
-{% block title %} TV Areia Branca - Categoria {{ categoria.nome }} {% endblock %}
+{% block title %} TV Areia Branca - Categoria {% if subcategoria_ativa %}{{ subcategoria_ativa.nome }} - {% endif %}{{ categoria.nome }} {% endblock %}
 
 {% block content %}
 <main class="category-page">
     <div class="container">
         <div class="category-header">
-            <h1 class="category-title">{{ categoria.nome }}</h1>
-            <p class="category-description">As últimas notícias sobre política nacional e internacional, eleições,
-                governo e muito mais.</p>
+            <h1 class="category-title">
+            {% if subcategoria_ativa %}
+                {{ subcategoria_ativa.nome }}
+            {% else %}
+                {{ categoria.nome }}
+            {% endif %}</h1>
             <div class="category-breadcrumb">
-                <a href="{% url 'homepage' %}">Home</a> > <span>{{ categoria.nome }}</span>
+                <a href="{% url 'homepage' %}">Home</a> >
+                <a href="{% url 'category' slug=categoria.slug %}">{{ categoria.nome }}</a>
+                {% if subcategoria_ativa %}
+                > <span>{{ subcategoria_ativa.nome }}</span>
+                {% endif %}
             </div>
         </div>
 
@@ -46,7 +53,13 @@
                         <li><a href="#">Nenhuma subcategoria disponível</a></li>
                         {% else %}
                             {% for sub in subcategorias %}
-                            <li><a href="#">{{ sub.nome }} <span>{{ sub.count}}</span></a></li>
+                            <li
+                            class="{% if subcategoria_ativa and subcategoria_ativa.id == sub.id %}active{% endif %}">
+                                <a href="{% url 'subcategoria' slug=categoria.slug subcategoria_slug=sub.slug %}">
+                                    {{ sub.nome }}
+                                    <span>{{ sub.post_count }}</span>
+                                </a>
+                            </li>
                             {% endfor %}
                         {% endif %}
                     </ul>
