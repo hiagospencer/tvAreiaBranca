@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Autor, Categoria, Patrocinadore, SubCategoria, Post, BreakingNews,YoutubeVideo
+from .models import Autor, Categoria, InstagramPost, Patrocinadore, SubCategoria, Post, BreakingNews,YoutubeVideo
 
 
 @admin.register(Autor)
@@ -66,3 +66,10 @@ class PatrocinadoreAdmin(admin.ModelAdmin):
     list_display = ('nome', 'ativo', 'data_publicacao')
     search_fields = ('nome', 'ativo')
     list_per_page = 20
+
+@admin.register(InstagramPost)
+class InstagramPostAdmin(admin.ModelAdmin):
+    list_display = ['data_publicacao', 'curtidas', 'ativo']
+    list_filter = ['ativo', 'data_publicacao']
+    search_fields = [ 'legenda', 'hashtags']
+    list_editable = ['ativo']

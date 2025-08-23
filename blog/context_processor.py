@@ -1,4 +1,4 @@
-from .models import Categoria,BreakingNews, Patrocinadore
+from .models import Categoria,BreakingNews, Patrocinadore,InstagramPost
 
 def menu_context(request):
     return {
@@ -13,4 +13,9 @@ def breaking_news_context(request):
 def patrocinadores_context(request):
     return {
         'patrocinadores': Patrocinadore.objects.filter(ativo=True)
+    }
+
+def instagram_posts_context(request):
+    return {
+        'instagram_posts': InstagramPost.objects.filter(ativo=True).order_by('-data_publicacao')[:6]
     }

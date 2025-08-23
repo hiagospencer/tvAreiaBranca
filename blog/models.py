@@ -1,3 +1,4 @@
+from datetime import datetime, timezone
 from django.db import models
 from django.utils.text import slugify
 
@@ -38,7 +39,7 @@ class SubCategoria(models.Model):
         if not self.slug:
             self.slug = slugify(self.nome)
         super().save(*args, **kwargs)
-        
+
     def __str__(self):
         return f"{self.nome} ({self.categoria.nome})"
 
@@ -100,3 +101,37 @@ class Patrocinadore(models.Model):
 
     def __str__(self):
         return f'Patrocinador: {self.nome} - Ativo: {self.ativo}'
+
+
+# models.py - adicione este modelo
+class InstagramPost(models.Model):
+    post_imagem = models.ImageField(upload_to='instagram/posts/')
+    curtidas = models.PositiveIntegerField(default=0)
+    legenda = models.TextField(blank=True)
+    hashtags = models.CharField(max_length=200, blank=True)
+    data_publicacao = models.DateTimeField(auto_now_add=True)
+    ativo = models.BooleanField(default=True)
+    link_externo = models.URLField(blank=True, default="https://www.instagram.com/canalareiabranca/")
+
+    class Meta:
+        ordering = ['-data_publicacao']
+        verbose_name = 'Post do Instagram'
+        verbose_name_plural = 'Posts do Instagram'
+
+    def __str__(self):
+        return f"Instagram Post - {self.data_publicacao.strftime('%d/%m/%Y')}"
+
+    def tempo_decorrido(self):
+        agora = datetime.now(timezone.utc)
+        diferenca = agora - self.data_publicacao
+
+        if diferenca.days > 7:
+            return self.data_publicacao.strftime("%d/%m/%Y")
+        elif diferenca.days > 0:
+            return f"{diferenca.days} DIAS ATRÁS"
+        elif diferenca.seconds >= 3600:
+            horas = diferenca.seconds // 3600
+            return f"{horas} HORAS ATRÁS"
+        else:
+            minutos = diferenca.seconds // 60
+            return f"{minutos} MINUTOS ATRÁS"

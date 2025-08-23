@@ -1,0 +1,40 @@
+{% load static %}
+<section class="instagram-section">
+    <h2 class="section-title">Siga-nos no Instagram</h2>
+
+    <div class="instagram-feed" id="instagramFeed">
+        {% for post in instagram_posts %}
+        <div class="instagram-card" onclick="window.open('{{ post.link_externo }}')">
+            <div class="card-header">
+                <img src="{% static 'img/logo.png' %}" alt="Logo canalareiabranca" class="profile-img">
+                <span class="profile-name">canalareiabranca</span>
+            </div>
+            <img src="{{ post.post_imagem.url }}" alt="Post image" class="card-image">
+            <div class="card-content">
+                <div class="card-actions">
+                    <div>
+                        <button class="action-btn"><i class="far fa-heart"></i></button>
+                        <button class="action-btn"><i class="far fa-comment"></i></button>
+                        <button class="action-btn"><i class="far fa-paper-plane"></i></button>
+                    </div>
+                    <button class="action-btn"><i class="far fa-bookmark"></i></button>
+                </div>
+                <div class="likes">{{ post.curtidas|default:0|floatformat:0 }} curtidas</div>
+                <p class="caption"><strong>{{ post.perfil_nome }}</strong> {{ post.legenda }}</p>
+                <div class="hashtags">{{ post.hashtags }}</div>
+                <div class="timestamp">{{ post.tempo_decorrido }}</div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="no-posts">
+            <p>Nenhum post do Instagram disponível no momento.</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="view-more">
+        <a href="https://www.instagram.com/canalareiabranca/" target="_blank" class="view-more-btn">
+            <i class="fab fa-instagram"></i> Seguir no Instagram
+        </a>
+    </div>
+</section>

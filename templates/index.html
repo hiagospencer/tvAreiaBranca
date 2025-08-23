@@ -20,19 +20,21 @@
 
 <main class="main-content">
     <div class="container">
-        <div class="anuncio">
-            <img src="{% static 'img/lista-de-transmissão_2.gif' %}" alt="" height="90">
-        </div>
+        {% include 'sponsors/sponsors.html' %}
         {% include 'posts/highlight/highlight_day.html' %}
-        <img src="{% static 'img/lista-de-transmissão_2.gif' %}" alt="" height="90">
+        <img src="{% static 'img/lista-de-transmissão_2.gif' %}" alt="" style="margin-bottom: 30px;">
         <div class="content-layout">
             {% include 'posts/latest_news/latest_news_post.html' %}
             <aside class="sidebar">
                 {% include 'posts/aside/most_read.html' %}
                 {% include 'youtube/youtube.html' %}
+
             </aside>
         </div>
+        {% include 'instagram/instagram.html' %}
+        <div class="anuncio" style="width: 100%;">
+            <img src="{% static 'img/Adolescencia-2.png' %}" alt="" style="width: 50%; margin: 0 auto 30px auto; display: block;">
+        </div>
     </div>
-    {% include 'sponsors/sponsors.html' %}
 </main>
 {% endblock content %}
