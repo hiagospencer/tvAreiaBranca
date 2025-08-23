@@ -5,15 +5,15 @@
 {% block content %}
 <div class="mobile-menu-overlay"></div>
 
-<div class="hero" class="hero"
-     style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+<div class="hero" class="hero" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
             url('{{ banner.imagem.url }}') no-repeat center top / cover;">
     <div class="container">
         <div class="hero-content">
             <span class="category-tag world">{{ banner.categoria.nome }}</span>
             <h2>{{ banner.titulo }}</h2>
             <p>{{ banner.subtitulo }}</p>
-            <a href="{% url 'detail' post_id=banner.id %}" class="read-more">Ler Matéria Completa <i class="fas fa-arrow-right"></i></a>
+            <a href="{% url 'detail' post_id=banner.id %}" class="read-more">Ler Matéria Completa <i
+                    class="fas fa-arrow-right"></i></a>
         </div>
     </div>
 </div>
@@ -22,7 +22,7 @@
     <div class="container">
         {% include 'sponsors/sponsors.html' %}
         {% include 'posts/highlight/highlight_day.html' %}
-        <img src="{% static 'img/lista-de-transmissão_2.gif' %}" alt="" style="margin-bottom: 30px;">
+        <img src="{% static 'img/banner-anuncio.gif' %}" alt="" style="margin-bottom: 30px;">
         <div class="content-layout">
             {% include 'posts/latest_news/latest_news_post.html' %}
             <aside class="sidebar">
@@ -33,7 +33,8 @@
         </div>
         {% include 'instagram/instagram.html' %}
         <div class="anuncio" style="width: 100%;">
-            <img src="{% static 'img/Adolescencia-2.png' %}" alt="" style="width: 50%; margin: 0 auto 30px auto; display: block;">
+            <img src="{% static 'img/banner-areia-branca.gif' %}" alt=""
+                style="width: 100%; margin: 0 auto 30px auto; display: block;">
         </div>
     </div>
 </main>

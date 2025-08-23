@@ -19,3 +19,9 @@ def instagram_posts_context(request):
     return {
         'instagram_posts': InstagramPost.objects.filter(ativo=True).order_by('-data_publicacao')[:6]
     }
+
+def youtube_video_context(request):
+    from .models import YoutubeVideo
+    return {
+        'video_youtube': YoutubeVideo.objects.all().order_by('-data_publicacao').first()
+    }

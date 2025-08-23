@@ -1,17 +1,18 @@
 {% extends 'assistant/base.html' %}
 {% load static %}
-{% block title %} TV Areia Branca - Categoria {% if subcategoria_ativa %}{{ subcategoria_ativa.nome }} - {% endif %}{{ categoria.nome }} {% endblock %}
+{% block title %} TV Areia Branca - Categoria {% if subcategoria_ativa %}{{ subcategoria_ativa.nome }} - {% endif %}
+{{categoria.nome }} {% endblock %}
 
 {% block content %}
 <main class="category-page">
     <div class="container">
         <div class="category-header">
             <h1 class="category-title">
-            {% if subcategoria_ativa %}
-                {{ subcategoria_ativa.nome }}
-            {% else %}
-                {{ categoria.nome }}
-            {% endif %}</h1>
+                {% if subcategoria_ativa %}
+                    {{ subcategoria_ativa.nome }}
+                {% else %}
+                    {{ categoria.nome }}
+                {% endif %}</h1>
             <div class="category-breadcrumb">
                 <a href="{% url 'homepage' %}">Home</a> >
                 <a href="{% url 'category' slug=categoria.slug %}">{{ categoria.nome }}</a>
@@ -30,7 +31,6 @@
                     <article class="news-item">
                         <div class="news-image">
                             <img src="{{ post.imagem.url }}" alt="{{ post.titulo }}">
-                            <!-- <span class="category-tag politics">{{ post.categoria.nome }}</span> -->
                         </div>
                         <div class="news-details">
                             <h3><a href="{% url 'detail' post_id=post.id %}" style="color: #41449b;">{{ post.titulo }}</a></h3>
@@ -40,6 +40,9 @@
                             </div>
                         </div>
                     </article>
+                    {% empty %}
+                    <p>Nenhuma notícia encontrada nesta categoria.</p>
+
                     {% endfor %}
                 </div>
                 {% include 'assistant/pagination.html' %}
@@ -52,23 +55,22 @@
                         {% if subcategorias|length == 0 %}
                         <li><a href="#">Nenhuma subcategoria disponível</a></li>
                         {% else %}
-                            {% for sub in subcategorias %}
-                            <li
-                            class="{% if subcategoria_ativa and subcategoria_ativa.id == sub.id %}active{% endif %}">
-                                <a href="{% url 'subcategoria' slug=categoria.slug subcategoria_slug=sub.slug %}">
-                                    {{ sub.nome }}
-                                    <span>{{ sub.post_count }}</span>
-                                </a>
-                            </li>
-                            {% endfor %}
+                        {% for sub in subcategorias %}
+                        <li class="{% if subcategoria_ativa and subcategoria_ativa.id == sub.id %}active{% endif %}">
+                            <a href="{% url 'subcategoria' slug=categoria.slug subcategoria_slug=sub.slug %}">
+                                {{ sub.nome }}
+                                <span>{{ sub.post_count }}</span>
+                            </a>
+                        </li>
+                        {% endfor %}
                         {% endif %}
                     </ul>
                 </div>
-
                 {% include 'youtube/youtube.html' %}
             </aside>
             <div class="anuncio" style="width: 100%;">
-                <img src="{% static 'img/Adolescencia-2.png' %}" alt="" height="90">
+                <img src="{% static 'img/banner-areia-branca.gif' %}" alt=""
+                    style="width: 100%; margin: 0 auto 30px auto; display: block;">
             </div>
         </div>
     </div>

@@ -229,6 +229,7 @@ img {
   font-weight: bold;
   color: white;
   transition: all 0.3s;
+  padding: 10px 0;
 }
 
 .read-more i {

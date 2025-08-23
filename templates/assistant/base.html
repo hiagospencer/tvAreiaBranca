@@ -5,15 +5,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="{% static 'img/logo.png' %}" rel="icon" />
 
-    <title>{% block title %} {% endblock %}</title>
+    <!-- Favicon -->
+    <link href="{% static 'img/logo.png' %}" rel="icon" type="image/png" />
+
+    <!-- Título dinâmico -->
+    <title>{% block title %}Tv Areia Branca{% endblock %}</title>
+
+    <!-- Descrição (SEO) -->
+    <meta name="description"
+        content="{% block description %}Últimas notícias de Areia Branca, RN, política, esporte, entretenimento e muito mais.{% endblock %}">
+
+    <!-- Palavras-chave (SEO - menos usado hoje, mas ainda útil) -->
+    <meta name="keywords" content="Areia Branca, notícias, RN, política, esporte, Brasil, tvareiabranca">
+
+    <!-- Autor -->
+    <meta name="author" content="Tv Areia Branca">
+
+    <!-- Robots (SEO) -->
+    <meta name="robots" content="index, follow">
+
+    <!-- Canonical (evita conteúdo duplicado) -->
+    <link rel="canonical" href="https://tvareiabranca.com.br{% block canonical %}{% endblock %}">
+
+    <!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Tv Areia Branca">
+    <meta property="og:title" content="{% block og_title %}Tv Areia Branca - Notícias em tempo real{% endblock %}">
+    <meta property="og:description"
+        content="{% block og_description %}Fique informado sobre as principais notícias de Areia Branca e do Brasil.{% endblock %}">
+    <meta property="og:url" content="https://tvareiabranca.com.br{% block og_url %}{% endblock %}">
+    <meta property="og:image" content="https://tvareiabranca.com.br{% static 'img/logo.png' %}">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@tvareiabranca">
+    <meta name="twitter:title"
+        content="{% block twitter_title %}Tv Areia Branca - Notícias em tempo real{% endblock %}">
+    <meta name="twitter:description"
+        content="{% block twitter_description %}As principais notícias de Areia Branca e do Brasil em um só lugar.{% endblock %}">
+    <meta name="twitter:image" content="https://tvareiabranca.com.br{% static 'img/logo.png' %}">
+
+    <!-- Tema do navegador (PWA/Android/iOS) -->
+    <meta name="theme-color" content="#ffffff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Estilos -->
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="{% static 'css/materia.css' %}">
     <link rel="stylesheet" href="{% static 'css/mobile-menu.css' %}">
     <link rel="stylesheet" href="{% static 'css/instagram.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 
 <body>
     {% include 'assistant/header.html' %}
