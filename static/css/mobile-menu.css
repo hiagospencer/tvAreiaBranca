@@ -100,13 +100,12 @@
     .desktop-menu {
         display: none;
     }
-    
+
     .mobile-menu-btn {
         display: block;
     }
-    
-    /* .main-nav {
-        display: flex;
-        align-items: center;
-    } */
+    .logo{
+        width: 250px;
+    }
+
 }

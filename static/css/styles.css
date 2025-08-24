@@ -654,6 +654,7 @@ img {
 
 .sponsor-item img {
   max-width: 100%;
+  width: 100px;
   max-height: 100%;
   object-fit: contain;
 }

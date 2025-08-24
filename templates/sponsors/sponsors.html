@@ -7,7 +7,9 @@
 
             {% for patrocinador in patrocinadores %}
             <div class="sponsor-item">
-                <img src="{{ patrocinador.imagem.url }}" alt="{{ patrocinador.nome }}" loading="lazy">
+                <a href="{{ patrocinador.rede_social}}" target="_blank" rel="noopener noreferrer">
+                    <img src="{{ patrocinador.imagem.url }}" alt="{{ patrocinador.nome }}" loading="lazy">
+                </a>
             </div>
             {% endfor %}
         </div>

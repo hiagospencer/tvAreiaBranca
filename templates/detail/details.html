@@ -21,7 +21,7 @@
                 <a href="#" class="telegram" title="Compartilhar no Telegram"><i class="fab fa-telegram-plane"></i></a>
             </div>
             <br><br>
-            <img src="{% static 'img/banner-anuncio.gif' %}" alt="" style="margin-bottom: 30px;">
+            <img src="{% static 'img/anuncio3.gif' %}" alt="" style="margin-bottom: 30px;">
         </div>
 
         <div class="article-content">
@@ -59,10 +59,41 @@
         </div>
         <br><br>
         <div class="anuncio" style="width: 100%;">
-            <img src="{% static 'img/banner-areia-branca.gif' %}" alt=""
+            <img src="{% static 'img/anuncio1.gif' %}" alt=""
                 style="width: 100%; margin: 0 auto 30px auto; display: block;">
         </div>
         {% include 'related_news/related_news.html' %}
     </div>
 </main>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const socialLinks = document.querySelectorAll(".social-share a");
+
+        // Dados vindos do Django
+        const articleTitle = encodeURIComponent("{{ post.titulo }}");
+        const articleUrl = encodeURIComponent("https://tvareiabranca.com.br{{ request.path }}");
+
+        socialLinks.forEach((link) => {
+            link.addEventListener("click", function (e) {
+                e.preventDefault();
+                let shareUrl = "";
+
+                if (this.classList.contains("facebook")) {
+                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${articleUrl}`;
+                } else if (this.classList.contains("twitter")) {
+                    shareUrl = `https://twitter.com/intent/tweet?text=${articleTitle}&url=${articleUrl}`;
+                } else if (this.classList.contains("whatsapp")) {
+                    shareUrl = `https://api.whatsapp.com/send?text=${articleTitle} ${articleUrl}`;
+                } else if (this.classList.contains("linkedin")) {
+                    shareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${articleUrl}&title=${articleTitle}`;
+                } else if (this.classList.contains("telegram")) {
+                    shareUrl = `https://t.me/share/url?url=${articleUrl}&text=${articleTitle}`;
+                }
+
+                window.open(shareUrl, "_blank", "width=600,height=400");
+            });
+        });
+    });
+</script>
 {% endblock content %}
