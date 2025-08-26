@@ -28,6 +28,7 @@
             <nav class="main-nav">
                 <ul class="desktop-menu">
                     <li><a href="{% url 'homepage' %}" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
+                    <li><a href="{% url 'tv_ao_vivo' %}" class="{% if request.path == '/tv-ao-vivo/' %}active{% endif %}">Tv Ao Vivo</a></li>
                     {% for cat in categorias %}
                     <li><a href="{% url 'category' slug=cat.slug %}"
                         class="{% if request.resolver_match.kwargs.slug == cat.slug %}active{% endif %}">{{ cat.nome }}</a>
@@ -55,6 +56,8 @@
     <nav class="mobile-nav">
         <ul>
             <li><a href="{% url 'homepage' %}" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
+            <li><a href="{% url 'tv_ao_vivo' %}" class="{% if request.path == '/tv-ao-vivo/' %}active{% endif %}">Tv Ao Vivo</a>
+            </li>
             {% for cat in categorias %}
             <li><a href="{% url 'category' slug=cat.slug %}"
                 class="{% if request.resolver_match.kwargs.slug == cat.slug %}active{% endif %}">{{ cat.nome }}</a>

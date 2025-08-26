@@ -9,7 +9,6 @@ def homepage(request):
     destaque_dia = Post.objects.filter(destaque=True).order_by('-data_publicacao')[:12]
     mais_lidas = Post.objects.all().order_by('-visualizacoes')[:8]
     banner = Post.objects.filter(banner=True).order_by('-data_publicacao').first()
-    # video_youtube = YoutubeVideo.objects.all().order_by('-data_publicacao').first()
     ultimas_noticias = Post.objects.filter(ultimas_noticias=True).order_by('-data_publicacao')
 
     paginator = Paginator(ultimas_noticias, 12)  # 10 itens por página
@@ -29,7 +28,6 @@ def homepage(request):
         'ultimas_noticias':ultimas_noticias,
         'banner':banner,
         'mais_lidas':mais_lidas,
-        # 'video_youtube':video_youtube,
         'noticias': noticias_paginadas,
     }
     return render(request, 'index.html', context)
@@ -80,3 +78,6 @@ def category(request, slug, subcategoria_slug=None):
         'subcategoria_ativa': subcategoria_ativa,
     }
     return render(request, 'category/category.html', context)
+
+def tv_ao_vivo(request):
+    return render(request, 'tv_ao_vivo/tv_ao_vivo.html')

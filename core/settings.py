@@ -16,7 +16,14 @@ if not SECRET_KEY:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['tvareiabrancha.com.br', 'www.tvareiabrancha.com.br']
+# ALLOWED_HOSTS = ['*']
+
+ALLOWED_HOSTS = ['tvareiabranca.com.br',
+   'www.tvareiabranca.com.br',
+   'localhost',
+   '127.0.0.1',
+   '89.117.33.186'
+]
 
 
 # Application definition

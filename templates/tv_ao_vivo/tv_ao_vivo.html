@@ -1,0 +1,125 @@
+{% extends 'assistant/base.html' %}
+{% load static %}
+{% block title %} TV Areia Branca - Categoria {% if subcategoria_ativa %}{{ subcategoria_ativa.nome }} - {% endif %}
+{{categoria.nome }} {% endblock %}
+
+{% block content %}
+<main class="main-container">
+    <h1 class="page-title">Assista à TV Areia Branca Ao Vivo</h1>
+
+    <!-- <section class="tv-section">
+         -->
+
+        <!-- PLAYER PRINCIPAL (MistPlayer) -->
+        <!-- <div class="player-container" id="mistplayer-container">
+            <div class="mistvideo" id="tvab_qZdrpLXeZDm7">
+                <noscript>
+                    <a href="http://tvab.shop:4433/tvab.html" target="_blank">
+                        Clique aqui para assistir
+                    </a>
+                </noscript>
+                <script>
+                    var a = function () {
+                        mistPlay("tvab", {
+                            target: document.getElementById("tvab_qZdrpLXeZDm7")
+                        });
+                    };
+                    if (!window.mistplayers) {
+                        var p = document.createElement("script");
+                        p.src = "http://tvab.shop:4433/player.js";
+                        document.head.appendChild(p);
+                        p.onload = a;
+                    } else { a(); }
+                </script>
+            </div>
+        </div>
+
+        <hr class="my-4"> -->
+
+        <!-- SEGUNDO PLAYER (HTML5 + hls.js) -->
+    <section class="tv-section">
+        <div class="tv-header">
+            <h2>Transmissão Ao Vivo</h2>
+            <div class="live-badge">
+                <i class="fas fa-broadcast-tower"></i>
+                <span>AO VIVO</span>
+            </div>
+        </div>
+        <h5 class="text-center">🔁 Player Alternativo (HTML5)</h5>
+        <div class="player-container" style="margin-bottom: 20px;">
+            <video id="hls-player" controls width="100%" height="480"></video>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+        <script>
+            var video = document.getElementById('hls-player');
+            var videoSrc = 'https://tvab.shop:4433/cmaf/tvab/index.m3u8';
+            if (Hls.isSupported()) {
+                var hls = new Hls();
+                hls.loadSource(videoSrc);
+                hls.attachMedia(video);
+            } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                video.src = videoSrc;
+            }
+        </script>
+
+        <hr class="my-4">
+
+        <!-- TERCEIRO PLAYER (Iframe externo) -->
+        <!-- <h5 class="text-center">📺 Player Externo (Backup)</h5>
+        <div style="position: relative; overflow: hidden; width: 100%; padding-top: 56.25%;">
+            <iframe src="https://playersdevideo.com/links/2025/8944147667.html" allow="autoplay; fullscreen"
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" scrolling="no"
+                frameborder="0">
+            </iframe>
+        </div> -->
+
+        <!-- Controles extras (volume + status fake) -->
+        <div class="player-controls mt-3">
+            <div class="volume-control">
+                <i class="fas fa-volume-up"></i>
+                <input type="range" min="0" max="100" value="80">
+            </div>
+            <div class="player-info">
+                <span>Transmitindo em HD</span>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script>
+    // Controle de volume visual
+    const volumeSlider = document.querySelector('input[type="range"]');
+    const volumeIcon = document.querySelector('.volume-control i');
+
+    volumeSlider.addEventListener('input', function () {
+        const volume = this.value;
+        if (volume == 0) {
+            volumeIcon.className = 'fas fa-volume-mute';
+        } else if (volume < 50) {
+            volumeIcon.className = 'fas fa-volume-down';
+        } else {
+            volumeIcon.className = 'fas fa-volume-up';
+        }
+        // Controla o volume do <video> HTML5
+        document.getElementById('hls-player').volume = volume / 100;
+    });
+
+    // Troca fake de qualidades
+    const playerInfo = document.querySelector('.player-info span');
+    const qualities = [ 'HD', 'Full HD', 'SD' ];
+    let currentQuality = 0;
+    setInterval(() => {
+        currentQuality = (currentQuality + 1) % qualities.length;
+        playerInfo.textContent = `Transmitindo em ${qualities[ currentQuality ]}`;
+    }, 5000);
+
+    // Atualização do horário
+    function updateCurrentTime() {
+        const now = new Date();
+        const timeString = now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+        document.querySelector('.schedule-time').textContent = timeString;
+    }
+    setInterval(updateCurrentTime, 60000);
+    updateCurrentTime();
+</script>
+{% endblock %}
