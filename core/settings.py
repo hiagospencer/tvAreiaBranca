@@ -14,10 +14,13 @@ if not SECRET_KEY:
     raise ValueError("A variável de ambiente SECRET_KEY não está definida.")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # ALLOWED_HOSTS = ['*']
 
+# CSRF_TRUSTED_ORIGINS = [
+#     'https://bd84bb41c872.ngrok-free.app/'
+# ]
 ALLOWED_HOSTS = ['tvareiabranca.com.br',
    'www.tvareiabranca.com.br',
    'localhost',
@@ -146,4 +149,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Segurança
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
-SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = False
