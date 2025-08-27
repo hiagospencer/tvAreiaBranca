@@ -32,8 +32,8 @@ def homepage(request):
     }
     return render(request, 'index.html', context)
 
-def detail(request, post_id):
-    post = get_object_or_404(Post, id=post_id)
+def detail(request, slug):
+    post = get_object_or_404(Post, slug=slug)
     noticias_relacionadas = Post.objects.filter(categoria=post.categoria).order_by('-data_publicacao').exclude(id=post.id)[:5]
     post.visualizacoes += 1
     post.save(update_fields=['visualizacoes'])

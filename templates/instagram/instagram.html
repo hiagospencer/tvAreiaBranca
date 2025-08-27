@@ -20,7 +20,7 @@
                     <button class="action-btn"><i class="far fa-bookmark"></i></button>
                 </div>
                 <div class="likes">{{ post.curtidas|default:0|floatformat:0 }} curtidas</div>
-                <p class="caption"><strong>{{ post.perfil_nome }}</strong> {{ post.legenda }}</p>
+                <p class="caption"><strong>{{ post.perfil_nome }}</strong> {{ post.legenda|truncatewords:400 }}...</p>
                 <div class="hashtags">{{ post.hashtags }}</div>
                 <div class="timestamp">{{ post.tempo_decorrido }}</div>
             </div>

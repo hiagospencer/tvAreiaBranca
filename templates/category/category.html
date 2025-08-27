@@ -31,7 +31,7 @@
                             <img src="{{ post.imagem.url }}" alt="{{ post.titulo }}">
                         </div>
                         <div class="news-details">
-                            <h3><a href="{% url 'detail' post_id=post.id %}" style="color: #41449b;">{{ post.titulo }}</a></h3>
+                            <h3><a href="{% url 'detail' slug=post.slug %}" style="color: #41449b;">{{ post.titulo }}</a></h3>
                             <p>{{ post.subtitulo }}</p>
                             <div class="news-meta">
                                 <span><i class="far fa-clock"></i>{{ post.data_publicacao }}</span>

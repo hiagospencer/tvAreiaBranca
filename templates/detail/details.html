@@ -1,7 +1,20 @@
 {% extends 'assistant/base.html' %}
 {% load static %}
-{% block title %} TV Areia Branca - Detalhes {% endblock %}
 
+{% block title %}{{ post.titulo }} | Tv Areia Branca{% endblock %}
+{% block description %}{{ post.descricao|truncatewords:30 }}{% endblock %}
+{% block keywords %}{{ post.titulo }}, Areia Branca, RN, política, esporte, tvareiabranca{% endblock %}
+{% block canonical %}{{ request.path }}{% endblock %}
+
+{% block og_type %}article{% endblock %}
+{% block og_title %}{{ post.titulo }}{% endblock %}
+{% block og_description %}{{ post.descricao|truncatewords:30 }}{% endblock %}
+{% block og_url %}{{ request.path }}{% endblock %}
+{% block og_image %}https://tvareiabranca.com.br{{ post.imagem.url }}{% endblock %}
+
+{% block twitter_title %}{{ post.titulo }}{% endblock %}
+{% block twitter_description %}{{ post.descricao|truncatewords:30 }}{% endblock %}
+{% block twitter_image %}https://tvareiabranca.com.br{{ post.imagem.url }}{% endblock %}
 {% block content %}
 <main class="article-detail">
     <div class="container">

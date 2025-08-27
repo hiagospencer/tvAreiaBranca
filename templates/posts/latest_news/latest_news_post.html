@@ -5,7 +5,7 @@
     <div class="news-list">
 
         {% for post in noticias %}
-        <a href="{% url 'detail' post_id=post.id %}" class="read-more" style="color: #41449b;">
+        <a href="{% url 'detail' slug=post.slug %}" class="read-more" style="color: #41449b;">
             <article class="news-item">
                 <div class="news-image">
                     <img src="{{ post.imagem.url }}" alt="{{ post.categoria.nome }}">

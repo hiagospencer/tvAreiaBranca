@@ -47,6 +47,7 @@ class SubCategoria(models.Model):
 # Postagem principal
 class Post(models.Model):
     titulo = models.CharField(max_length=200)
+    slug = models.SlugField(max_length=500,null=True, blank=True)
     subtitulo = models.CharField(max_length=300, blank=True)
     descricao = RichTextField()
     imagem = models.ImageField(upload_to='posts/')
@@ -61,6 +62,11 @@ class Post(models.Model):
 
     class Meta:
         ordering = ['-data_publicacao']
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.titulo)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.titulo

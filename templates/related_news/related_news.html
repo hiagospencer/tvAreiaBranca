@@ -6,9 +6,8 @@
     <h2 class="section-title">Notícias <span>Relacionadas</span></h2>
     <div class="news-grid">
 
-
         {% for post in noticias_relacionadas %}
-        <a href="{% url 'detail' post_id=post.id %}" class="read-more" style="color: #41449b;">
+        <a href="{% url 'detail' slug=post.slug %}" class="read-more" style="color: #41449b;">
             <article class="news-card">
                 <div class="news-image">
                     <img src="{{ post.imagem.url }}" alt="{{ post.categoria.nome }}">
@@ -24,21 +23,5 @@
             </article>
         </a>
         {% endfor %}
-        <!-- <article class="news-card">
-            <div class="news-image">
-                <img src="{% static 'img/politica.jfif' %}" alt="ONU">
-                <span class="category-tag world">MUNDO</span>
-            </div>
-            <div class="news-content">
-                <h3>ONU Aprova Novo Pacote de Sanções Contra País Envolvido em Conflito</h3>
-                <p>Resolução foi aprovada por 12 votos a favor, com 3 abstenções. Medidas incluem embargo de
-                    armas e congelamento de ativos.</p>
-                <div class="news-meta">
-                    <span><i class="far fa-clock"></i> 2 dias atrás</span>
-                    <span><i class="far fa-comment"></i> 42 comentários</span>
-                </div>
-            </div>
-        </article> -->
-
     </div>
 </section>

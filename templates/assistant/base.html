@@ -16,8 +16,9 @@
     <meta name="description"
         content="{% block description %}Últimas notícias de Areia Branca, RN, política, esporte, entretenimento e muito mais.{% endblock %}">
 
-    <!-- Palavras-chave (SEO - menos usado hoje, mas ainda útil) -->
-    <meta name="keywords" content="Areia Branca, notícias, RN, política, esporte, Brasil, tvareiabranca">
+    <!-- Palavras-chave (SEO - opcional hoje em dia) -->
+    <meta name="keywords"
+        content="{% block keywords %}Areia Branca, notícias, RN, política, esporte, Brasil, tvareiabranca{% endblock %}">
 
     <!-- Autor -->
     <meta name="author" content="Tv Areia Branca">
@@ -25,18 +26,19 @@
     <!-- Robots (SEO) -->
     <meta name="robots" content="index, follow">
 
-    <!-- Canonical (evita conteúdo duplicado) -->
-    <link rel="canonical" href="https://tvareiabranca.com.br{% block canonical %}{% endblock %}">
+    <!-- Canonical -->
+    <link rel="canonical" href="https://tvareiabranca.com.br{% block canonical %}{{ request.path }}{% endblock %}">
 
-    <!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
+    <!-- Open Graph -->
     <meta property="og:locale" content="pt_BR">
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
     <meta property="og:site_name" content="Tv Areia Branca">
     <meta property="og:title" content="{% block og_title %}Tv Areia Branca - Notícias em tempo real{% endblock %}">
-    <meta property="og:description" content="{% block og_description %}Fique informado sobre as principais notícias de Areia Branca e do Brasil.
-        {% endblock %}">
+    <meta property="og:description"
+        content="{% block og_description %}Fique informado sobre as principais notícias de Areia Branca e do Brasil.{% endblock %}">
     <meta property="og:url" content="https://tvareiabranca.com.br{% block og_url %}{% endblock %}">
-    <meta property="og:image" content="https://tvareiabranca.com.br{% static 'img/logo.png' %}">
+    <meta property="og:image"
+        content="{% block og_image %}https://tvareiabranca.com.br{% static 'img/logo.png' %}{% endblock %}">
 
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image">
@@ -45,9 +47,10 @@
         content="{% block twitter_title %}Tv Areia Branca - Notícias em tempo real{% endblock %}">
     <meta name="twitter:description"
         content="{% block twitter_description %}As principais notícias de Areia Branca e do Brasil em um só lugar.{% endblock %}">
-    <meta name="twitter:image" content="https://tvareiabranca.com.br{% static 'img/logo.png' %}">
+    <meta name="twitter:image"
+        content="{% block twitter_image %}https://tvareiabranca.com.br{% static 'img/logo.png' %}{% endblock %}">
 
-    <!-- Tema do navegador (PWA/Android/iOS) -->
+    <!-- Tema do navegador -->
     <meta name="theme-color" content="#ffffff">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -61,16 +64,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
-
 <body>
     {% include 'assistant/header.html' %}
-    {% block content %} {% endblock %}
-    {%include 'assistant/footer.html' %}
+    {% block content %}{% endblock %}
+    {% include 'assistant/footer.html' %}
+
+    <!-- Scripts -->
     <script src="{% static 'js/script.js' %}"></script>
     <script src="{% static 'js/mobile-menu.js' %}"></script>
-    <!-- <script src="{% static 'js/detalhe.js' %}"></script> -->
     <script src="{% static 'js/categoria.js' %}"></script>
-    <!-- <script src="{% static 'js/instagram.js' %}"></script> -->
 </body>
 
 </html>

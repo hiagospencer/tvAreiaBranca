@@ -3,7 +3,7 @@
     <h3>Mais Lidas</h3>
     <div class="popular-news">
         {% for post in mais_lidas %}
-        <a href="{% url 'detail' post_id=post.id %}" class="read-more" style="color: #41449b;">
+        <a href="{% url 'detail' slug=post.slug %}" class="read-more" style="color: #41449b;">
             <article>
                 <span class="count">{{ forloop.counter }}</span>
                 <div class="content">

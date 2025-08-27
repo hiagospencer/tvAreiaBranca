@@ -12,7 +12,7 @@
             <span class="category-tag world">{{ banner.categoria.nome }}</span>
             <h2>{{ banner.titulo }}</h2>
             <p>{{ banner.subtitulo }}</p>
-            <a href="{% url 'detail' post_id=banner.id %}" class="read-more">Ler Matéria Completa <i
+            <a href="{% url 'detail' slug=banner.slug %}" class="read-more">Ler Matéria Completa <i
                     class="fas fa-arrow-right"></i></a>
         </div>
     </div>
