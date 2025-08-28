@@ -14,13 +14,15 @@ if not SECRET_KEY:
     raise ValueError("A variável de ambiente SECRET_KEY não está definida.")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # ALLOWED_HOSTS = ['*']
 
 # CSRF_TRUSTED_ORIGINS = [
-#     'https://bd84bb41c872.ngrok-free.app/'
+#     'https://*.ngrok-free.app',
+#     'https://*.ngrok.io',
 # ]
+
 ALLOWED_HOSTS = ['tvareiabranca.com.br',
    'www.tvareiabranca.com.br',
    'localhost',
@@ -40,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'ckeditor',
+    'ckeditor_uploader',
 
     # apps
     'blog',
@@ -90,16 +93,19 @@ WSGI_APPLICATION = 'core.wsgi.application'
 #     }
 # }
 
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'tvAreiaBranca_dn',           # nome do banco
-        'USER': 'postgres',           # seu usuário
-        'PASSWORD': 'emillylinda10',   # sua senha
+        'NAME': 'areiab_db',           # nome do banco
+        'USER': 'areiab_user',           # seu usuário
+        'PASSWORD': 'Castro@1989@',   # sua senha
         'HOST': 'localhost',
         'PORT': '5432',
     }
 }
+
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
@@ -141,6 +147,9 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
@@ -149,4 +158,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Segurança
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
-SECURE_SSL_REDIRECT = False
+SECURE_SSL_REDIRECT = True

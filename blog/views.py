@@ -34,7 +34,7 @@ def homepage(request):
 
 def detail(request, slug):
     post = get_object_or_404(Post, slug=slug)
-    noticias_relacionadas = Post.objects.filter(categoria=post.categoria).order_by('-data_publicacao').exclude(id=post.id)[:5]
+    noticias_relacionadas = Post.objects.filter(categoria=post.categoria).order_by('-data_publicacao').exclude(id=post.id)[:6]
     post.visualizacoes += 1
     post.save(update_fields=['visualizacoes'])
     context = {
@@ -59,7 +59,7 @@ def category(request, slug, subcategoria_slug=None):
         posts = Post.objects.filter(categoria=categoria).order_by('-data_publicacao')
         subcategoria_ativa = None
 
-    paginator = Paginator(posts, 1)  # 10 itens por página
+    paginator = Paginator(posts,12)  # 10 itens por página
     page = request.GET.get('page')
 
     try:

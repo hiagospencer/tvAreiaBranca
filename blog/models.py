@@ -3,6 +3,8 @@ from django.db import models
 from django.utils.text import slugify
 
 from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
+
 
 # Autor do post
 class Autor(models.Model):
@@ -49,7 +51,7 @@ class Post(models.Model):
     titulo = models.CharField(max_length=200)
     slug = models.SlugField(max_length=500,null=True, blank=True)
     subtitulo = models.CharField(max_length=300, blank=True)
-    descricao = RichTextField()
+    descricao = RichTextUploadingField()
     imagem = models.ImageField(upload_to='posts/')
     autor = models.ForeignKey(Autor, on_delete=models.SET_NULL, null=True, blank=True)
     categoria = models.ForeignKey(Categoria, on_delete=models.PROTECT)
