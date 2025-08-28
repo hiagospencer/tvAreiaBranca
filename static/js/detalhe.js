@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
       } else if (this.classList.contains("twitter")) {
         shareUrl = `https://twitter.com/intent/tweet?text=${articleTitle}&url=${articleUrl}`;
       } else if (this.classList.contains("whatsapp")) {
-        shareUrl = `https://api.whatsapp.com/send?text=${articleTitle} ${articleUrl}`;
+        shareUrl = `https://api.whatsapp.com/send?text=${articleUrl}`;
       } else if (this.classList.contains("linkedin")) {
         shareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${articleUrl}&title=${articleTitle}`;
       } else if (this.classList.contains("telegram")) {

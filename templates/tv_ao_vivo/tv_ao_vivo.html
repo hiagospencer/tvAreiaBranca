@@ -6,14 +6,21 @@
 <main class="main-container">
     <h1 class="page-title">Assista à TV Areia Branca Ao Vivo</h1>
 
-    <!-- <section class="tv-section">
-         -->
+    <section class="tv-section">
+        <div class="tv-header">
+            <h2>Transmissão Ao Vivo</h2>
+            <div class="live-badge">
+                <i class="fas fa-broadcast-tower"></i>
+                <span>AO VIVO</span>
+            </div>
+        </div>
 
         <!-- PLAYER PRINCIPAL (MistPlayer) -->
-        <!-- <div class="player-container" id="mistplayer-container">
+        <h5 class="text-center">Player Principal (MistPlayer)</h5>
+        <div class="player-container" style="margin-bottom: 20px;">
             <div class="mistvideo" id="tvab_qZdrpLXeZDm7">
                 <noscript>
-                    <a href="http://tvab.shop:4433/tvab.html" target="_blank">
+                    <a href="https://tvab.shop:4433/tvab.html" target="_blank">
                         Clique aqui para assistir
                     </a>
                 </noscript>
@@ -25,7 +32,11 @@
                     };
                     if (!window.mistplayers) {
                         var p = document.createElement("script");
-                        p.src = "http://tvab.shop:4433/player.js";
+                        if (location.protocol == "https:") {
+                            p.src = "https://tvab.shop:4433/player.js"
+                        } else {
+                            p.src = "http://tvab.shop:4433/player.js"
+                        }
                         document.head.appendChild(p);
                         p.onload = a;
                     } else { a(); }
@@ -33,25 +44,17 @@
             </div>
         </div>
 
-        <hr class="my-4"> -->
+        <hr class="my-4">
 
         <!-- SEGUNDO PLAYER (HTML5 + hls.js) -->
-    <section class="tv-section">
-        <div class="tv-header">
-            <h2>Transmissão Ao Vivo</h2>
-            <div class="live-badge">
-                <i class="fas fa-broadcast-tower"></i>
-                <span>AO VIVO</span>
-            </div>
-        </div>
-        <h5 class="text-center">🔁 Player Alternativo (HTML5)</h5>
+        <h5 class="text-center">Player Alternativo (HTML5)</h5>
         <div class="player-container" style="margin-bottom: 20px;">
             <video id="hls-player" controls width="100%" height="480"></video>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
         <script>
             var video = document.getElementById('hls-player');
-            var videoSrc = 'https://tvab.shop:4433/cmaf/tvab/index.m3u8';
+            var videoSrc = 'https://tvab.shop:4433/player.js';
             if (Hls.isSupported()) {
                 var hls = new Hls();
                 hls.loadSource(videoSrc);
@@ -63,16 +66,7 @@
 
         <hr class="my-4">
 
-        <!-- TERCEIRO PLAYER (Iframe externo) -->
-        <!-- <h5 class="text-center">📺 Player Externo (Backup)</h5>
-        <div style="position: relative; overflow: hidden; width: 100%; padding-top: 56.25%;">
-            <iframe src="https://playersdevideo.com/links/2025/8944147667.html" allow="autoplay; fullscreen"
-                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" scrolling="no"
-                frameborder="0">
-            </iframe>
-        </div> -->
-
-        <!-- Controles extras (volume + status fake) -->
+        <!-- Controles extras -->
         <div class="player-controls mt-3">
             <div class="volume-control">
                 <i class="fas fa-volume-up"></i>
@@ -104,21 +98,21 @@
     });
 
     // Troca fake de qualidades
-    const playerInfo = document.querySelector('.player-info span');
-    const qualities = [ 'HD', 'Full HD', 'SD' ];
-    let currentQuality = 0;
-    setInterval(() => {
-        currentQuality = (currentQuality + 1) % qualities.length;
-        playerInfo.textContent = `Transmitindo em ${qualities[ currentQuality ]}`;
-    }, 5000);
+    // const playerInfo = document.querySelector('.player-info span');
+    // const qualities = [ 'HD', 'Full HD', 'SD' ];
+    // let currentQuality = 0;
+    // setInterval(() => {
+    //     currentQuality = (currentQuality + 1) % qualities.length;
+    //     playerInfo.textContent = `Transmitindo em ${qualities[ currentQuality ]}`;
+    // }, 5000);
 
-    // Atualização do horário
-    function updateCurrentTime() {
-        const now = new Date();
-        const timeString = now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
-        document.querySelector('.schedule-time').textContent = timeString;
-    }
-    setInterval(updateCurrentTime, 60000);
-    updateCurrentTime();
+    // // Atualização do horário
+    // function updateCurrentTime() {
+    //     const now = new Date();
+    //     const timeString = now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+    //     document.querySelector('.schedule-time').textContent = timeString;
+    // }
+    // setInterval(updateCurrentTime, 60000);
+    // updateCurrentTime();
 </script>
 {% endblock %}
